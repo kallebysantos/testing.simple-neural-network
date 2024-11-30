@@ -1,5 +1,21 @@
-function predict(input: number, weight: number, bias: number): number {
+export function predict(input: number, weight: number, bias: number): number {
   return input * weight + bias;
+}
+
+export function foward(
+  weight: number,
+  input: number,
+  actual: number,
+  learningRate: number,
+  bias: number,
+) {
+  const prediction = predict(input, weight, bias);
+  const newWeight = getLoss(weight, input, prediction, actual, learningRate);
+
+  return {
+    prediction,
+    newWeight,
+  };
 }
 
 export function getLoss(
