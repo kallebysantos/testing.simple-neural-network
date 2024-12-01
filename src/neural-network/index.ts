@@ -12,9 +12,13 @@ export function foward(
   const prediction = predict(input, weight, bias);
   const newWeight = getLoss(weight, input, prediction, actual, learningRate);
 
+  const newBias = bias -
+    (learningRate * applySquaredErrorDerivate(prediction, actual));
+
   return {
     prediction,
     newWeight,
+    newBias,
   };
 }
 
